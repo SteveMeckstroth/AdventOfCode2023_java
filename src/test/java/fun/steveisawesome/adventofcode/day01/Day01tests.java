@@ -53,4 +53,16 @@ public class Day01tests {
 				.andExpect(jsonPath("$.part").value(1))
 				.andExpect(jsonPath("$.day").value(1));
 	}
+	
+	@Test
+	public void part2_2() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.post("/api/Day01/part2")
+				.accept(MediaType.APPLICATION_JSON)
+				.content("fivefourdfjjpv85fourkcttlqdpksxqjzgbgk")
+				)
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.answer").value(54))
+				.andExpect(jsonPath("$.part").value(1))
+				.andExpect(jsonPath("$.day").value(1));
+	}
 }

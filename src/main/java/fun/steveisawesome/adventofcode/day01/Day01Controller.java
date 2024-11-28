@@ -80,9 +80,9 @@ public class Day01Controller {
 		
 		int total = 0;
 		
-		for (String calibration_value : lines) {
+		for (String line : lines) {
 			
-			calibration_value = wordsToNumbers(calibration_value);
+			String calibration_value = wordsToNumbers(line);
 			String pattern = "\\d+";
 			
 			Pattern p = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
@@ -102,7 +102,7 @@ public class Day01Controller {
 			
 			total += value;
 			
-            System.out.println(calibration_value + " First digit: " + firstNumber + " Last digit: " + lastNumber);
+            System.out.println("line: " + line + " calibration value " + calibration_value + " First digit: " + firstNumber + " Last digit: " + lastNumber);
         }
 		
 		System.out.println("total: " + total);
@@ -142,6 +142,11 @@ public class Day01Controller {
             if (index != -1) {
             	indexes.put(index, key);
             }
+            
+            int lastIndex = line.lastIndexOf(key);
+            if (lastIndex != -1) {
+            	indexes.put(lastIndex, key);
+            }
         
 		}
         
@@ -156,8 +161,9 @@ public class Day01Controller {
         
         StringBuilder strb=new StringBuilder(newLine);    
         int lastIndex=strb.lastIndexOf(max.getValue());    
-        strb.replace(lastIndex,max.getValue().length()+lastIndex,wordMap.get(max.getValue()).toString());    
-        
+        strb.replace(lastIndex, max.getValue().length() + lastIndex, wordMap.get(max.getValue()).toString());
+        System.out.println(indexes.toString());
+        System.out.println("Max value: " + max.getValue() + " wordMap: " + wordMap.get(max.getValue()).toString());
         return strb.toString();    
             
         
