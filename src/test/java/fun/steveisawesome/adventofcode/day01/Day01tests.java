@@ -22,7 +22,7 @@ public class Day01tests {
 	private MockMvc mvc;
 
 	@Test
-	public void getHello() throws Exception {
+	public void part1() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.post("/api/Day01/part1")
 				.accept(MediaType.APPLICATION_JSON)
 				.content("1abc2\n"
@@ -32,6 +32,24 @@ public class Day01tests {
 				)
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.answer").value(142))
+				.andExpect(jsonPath("$.part").value(1))
+				.andExpect(jsonPath("$.day").value(1));
+	}
+	
+	@Test
+	public void part2() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.post("/api/Day01/part2")
+				.accept(MediaType.APPLICATION_JSON)
+				.content("two1nine\n"
+						+ "eightwothree\n"
+						+ "abcone2threexyz\n"
+						+ "xtwone3four\n"
+						+ "4nineeightseven2\n"
+						+ "zoneight234\n"
+						+ "7pqrstsixteen")
+				)
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.answer").value(281))
 				.andExpect(jsonPath("$.part").value(1))
 				.andExpect(jsonPath("$.day").value(1));
 	}
